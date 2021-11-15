@@ -88,20 +88,3 @@ async closing() => {
 		server.close(() => console.log("# Web server stopped."))
 	}
 }
-
-// Promise is rejected and no error handler is attached to the promise
-process.on("unhandledRejection", async (reason, promise) => {
-	console.error("# There was an unhandled error: ", reason.code, reason.message, promise)
-	console.error("# Exiting the application.")
-	await closing()
-	process.exit(1)
-})
-
-// Any uncaught JavaScript exception
-process.on('uncaughtException', async (err, origin) => {
-	console.error('# There was an uncaught error', origin, err)
-	console.error("# Exiting the application.")
-	await closing()
-	process.exit(1)
-})
-
