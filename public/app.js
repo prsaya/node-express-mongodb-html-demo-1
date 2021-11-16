@@ -1,4 +1,5 @@
- 
+/* JavaScript code for the client */ 
+
 /* Constants and variables */
 
 const rowSelectColor = "#F5F5F5"
