@@ -1,17 +1,17 @@
 const { ObjectId } = require("mongodb")
 const dbName = "test"
-const coll = "testColl"
+const coll = "names"
 let db
 
 module.exports = {
 
 	getDb: async (client) => {
-        db = await client.db(dbName)
-    },
+		db = await client.db(dbName)
+	},
 
-    getAllDocs: async () => {
-        return await db.collection(coll).find().toArray()
-    },
+	getAllDocs: async () => {
+		return await db.collection(coll).find().toArray()
+	},
 	
 	addDoc: async (doc) => {
 		return await db.collection(coll).insertOne(doc)
