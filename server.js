@@ -10,6 +10,8 @@ app.use(cors())
 app.use(express.static("public"))
 app.use(express.json())
 
+// The route definitions for get, post and delete
+
 app.get("/api/allnames", async (req, res) => {
 	try {
 		const docs = await dbFunctions.getAllDocs()
@@ -17,7 +19,7 @@ app.get("/api/allnames", async (req, res) => {
 	}
 	catch (err) {
 		console.error("# Get Error", err)
-		res.status(500).send({error: err.name + ", " + err.message })
+		res.status(500).send({ error: err.name + ", " + err.message })
 	}
 })
 
@@ -25,10 +27,10 @@ app.post('/api/addname', async (req, res) => {
 
 	let data = req.body;
 
-    try {
+	try {
 		data = await dbFunctions.addDoc(data)
 		res.json(data)
-    }
+	}
 	catch (err) {
 		console.error("# Post Error", err)
 		res.status(500).send({ error: err.name + ", " + err.message })
@@ -57,7 +59,7 @@ app.delete("/api/deletename/:id", async (req, res) => {
 	res.json(respObj)
 })
 
-//
+// Start the web server and connect to the database
 
 let server
 let conn
@@ -78,7 +80,7 @@ let conn
 	}
 })()
 
-async closing() => {
+async function closing() {
 	console.log("# Closing resources...")
 	if (conn) {
 		await conn.close()
